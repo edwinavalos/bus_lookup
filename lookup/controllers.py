@@ -1,5 +1,6 @@
 from flask import current_app as ca
-import requests, logging, lxml
+from lxml import html
+import requests, logging
 
 def get_next(request_json):
     requests.get("https://www.metrotransit.org/NexTripBadge.aspx?stopnumber=1890")
