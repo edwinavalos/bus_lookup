@@ -12,10 +12,10 @@ def receive():
     next_bus = get_next(request.json)
     print(request.json)
     resp = {}
-    resp["speech"] = "The next bus is at {}".format(next_bus)
-    resp["displayText"] = "This is a text test"
+    resp["speech"] = "The next bus is in {}".format(next_bus)
+    resp["displayText"] = "The next bus is in {}".format(next_bus)
     resp["data"] = {"content":"test"}
-    resp["contextOut"] = [{"parameters":{"arrival_time":"2 minutes"}}]
+    resp["contextOut"] = [{"parameters":{"arrival_time":next_bus}}]
     resp["source"] = "Straight from the mouths of babes"
     event = Event(str(resp))
     db.session.add(event)
