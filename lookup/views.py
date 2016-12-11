@@ -10,9 +10,10 @@ views_bp = Blueprint("views_bp", __name__)
 @views_bp.route("/receive", methods=["POST"])
 def receive():
     bus_number, direction, due_time = get_next(request.json)
+    print(request.json)
     resp = {}
     resp["speech"] = "The next {} {} is due {}".format(bus_number, direction, due_time)
-    resp["displayText"] = "The next {} {} is due {}".format(bus_number, direction,due_time)
+    resp["displayText"] = "The next {} {} is due {}".format(bus_number, direction, due_time)
     resp["data"] = {"content":"test"}
     resp["contextOut"] = [{"parameters":{"due_time":due_time,"number": bus_number, "direction":direction}}]
     resp["source"] = "Straight from the mouths of babes"
