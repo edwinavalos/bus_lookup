@@ -14,8 +14,8 @@ def receive():
     resp = {}
     resp["speech"] = "The next {} {} is due {}".format(bus_number, direction, due_time)
     resp["displayText"] = "The next {} {} is due {}".format(bus_number, direction, due_time)
-    resp["data"] = {"content":"test"}
-    resp["contextOut"] = [{"parameters":{"due_time":due_time,"number": bus_number, "direction":direction}}]
+    #resp["data"] = {"content":"test"}
+    #resp["contextOut"] = [{"parameters":{"due_time":due_time,"number": bus_number, "direction":direction}}]
     resp["source"] = "Straight from the mouths of babes"
     event = Event(str(resp))
     db.session.add(event)

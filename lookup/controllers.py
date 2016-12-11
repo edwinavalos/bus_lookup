@@ -10,7 +10,9 @@ def get_next(request_json):
     due_time = tree.xpath('//*[@id="NexTripControl1_NexTripResults1_departures"]/div[1]/span[3]/text()')
     if "Due" in due_time:
         due_time = now
+    elif "Min" in due_time:
+        due_time = "in " + due_time[0].replace("Min","minutes")
     else:
-        due_time = due_time[0].replace("Min","minutes")
+        due_time = "at " + due_time[0]
     return bus_number, direction, due_time
     
