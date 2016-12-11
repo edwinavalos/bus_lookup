@@ -24,4 +24,6 @@ def receive():
 def get_last_response():
     return jsonify(**ast.literal_eval(db.session.query(Event).order_by(Event.id.desc()).first().response))
     
-
+@views_bp.route("/", methods=["GET"])
+def default():
+    return "Default return"
