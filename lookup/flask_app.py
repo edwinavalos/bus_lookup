@@ -14,6 +14,7 @@ def create_app(config_filename = None):
     root_logger = logging.getLogger("werkzeug")
     if app.config["DEBUG"]:
         root_logger.setLevel(logging.DEBUG)
+    print app.config
     console_handler = logging.StreamHandler()
     console_handler.setFormatter(log_formatter)
     root_logger.addHandler(console_handler)
