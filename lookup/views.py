@@ -9,13 +9,12 @@ views_bp = Blueprint("views_bp", __name__)
 
 @views_bp.route("/receive", methods=["POST"])
 def receive():
-    next_bus = get_next(request.json)
-    print(request.json)
+    bus_number, direction, due_time = get_next(request.json)
     resp = {}
-    resp["speech"] = "The next bus is in {}".format(next_bus)
-    resp["displayText"] = "The next bus is in {}".format(next_bus)
+    resp["speech"] = "The next {} {} is due {}".format(bus_number, direction, due_time)
+    resp["displayText"] = "The next {} {} is due {}".format(bus_number, direction,due_time)
     resp["data"] = {"content":"test"}
-    resp["contextOut"] = [{"parameters":{"arrival_time":next_bus}}]
+    resp["contextOut"] = [{"parameters":{"due_time":due_time,"number": bus_number, "direction":direction}}]
     resp["source"] = "Straight from the mouths of babes"
     event = Event(str(resp))
     db.session.add(event)
