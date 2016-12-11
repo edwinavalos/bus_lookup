@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
 from flask import current_app as ca
 from .models import Event, db
-#from controllers import get_times
+from .controllers import get_next
 import logging
 import ast
 
