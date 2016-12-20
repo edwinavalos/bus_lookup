@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask import current_app as ca
-from .models import Event, db
+from .models import Event, db, BusStop
 from .controllers import get_next
 import logging
 import ast
@@ -30,3 +30,9 @@ def get_last_response():
 @views_bp.route("/", methods=["GET"])
 def default():
     return "Default return"
+
+@views_bp.route("/getStop", methods=["GET"])
+def getStop():
+    stop_id = request.args.get("stop_id","")
+    result = BusStop.query.filter_by(stop_id=stop_id).first()
+    return result.stop_name

@@ -1,6 +1,6 @@
 import logging
+from .controllers import create_stops
 from flask import Flask, request
-
 
 def create_app(config_filename = None):
     app = Flask(__name__, instance_relative_config = True)
@@ -21,11 +21,11 @@ def create_app(config_filename = None):
     from . import models
     db.init_app(app)
     models.create_all(app)
+    create_stops(app)
 
     from .views import views_bp
     app.register_blueprint(views_bp)
     return app
-
 
 if __name__ == "__main__":
     app.debug = True
